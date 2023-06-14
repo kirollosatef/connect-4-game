@@ -38,7 +38,20 @@ let movementOfPiece = (p) => {
 };
 
 let putPiceOnPlatform = (piece, platform) => {
-  platform.insert(piece);
+  let mapX = map(piece.x, 0, width, 0, rows);
+  let mapY = map(piece.y, 0, height, 0, cols);
+  // Role 1
+  if (
+    floor(mapY) === rows - 1 ||
+    platform.existsNeighbourAtBottom(floor(mapX), floor(mapY))
+  ) {
+    platform.platform[floor(mapX)][floor(mapY)] = new Piece(
+      piece.x,
+      piece.y,
+      piece.diameter,
+      piece.color
+    );
+  }
 };
 
 function mouseClicked() {
