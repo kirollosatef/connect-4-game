@@ -7,14 +7,14 @@ const app = express();
 
 app.use(express.static("public"));
 
-app.get("/*", () => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.set("port", port);
 const server = http.createServer(app);
 
 server.listen(port, () => {
-  console.log(`***Server running on port ${port}***`);
+  console.log("\x1b[1m%s", `Server running on port ${port}`);
   console.log("\x1b[35m%s\x1b[0m", `http://localhost:${port}`);
 });
